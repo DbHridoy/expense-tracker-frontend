@@ -6,29 +6,29 @@ on:
       - main
   pull_request:
   
-  env:
-    NODE_VERSION: 24
+env:
+  NODE_VERSION: 24
 
-  jobs:
+jobs:
   
-    ci:
-      name: Machine selection
-      runs-on: ubuntu-latest
+  ci:
+    name: Machine selection
+    runs-on: ubuntu-latest
 
-      steps:
-        - name: Checkout code
-          uses: actions/checkout@v4
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-        - name: Setup node
-          uses: actions/setup-node@v4
-          with:
-            node-version: ${{env.NODE_VERSION}}
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{env.NODE_VERSION}}
 
-        - name: Installed dependencies
-          run: npm install
+      - name: Installed dependencies
+        run: npm install
 
-        - name: Build project
-          run: npm run build
+      - name: Build project
+        run: npm run build
 
   cd:
     name: Deploy to vercel
