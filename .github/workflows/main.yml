@@ -1,0 +1,48 @@
+name: Deploy to vercel CI/CD pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  
+  env:
+  NODE_VERSION: 24
+
+  jobs:
+
+    ci:
+      name: Machine selection
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v4
+
+        - name: Setup node
+          uses: actions/setup-node@v4
+          with:
+            node-version: ${{env.NODE_VERSION}}
+
+        - name: Installed dependencies
+          uses: npm install
+
+        - name: Build project
+          uses: npm run build
+
+  cd:
+    name: Deploy to vercel
+    needs: ci
+    runs-on: ubuntu-latest
+
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install vercel cli
+        uses: npm i -g vercel
+
+      - name: Build and deploy to production
+        uses: vercel --prod --token=${{secrets.VERCEL_TOKEN}}
