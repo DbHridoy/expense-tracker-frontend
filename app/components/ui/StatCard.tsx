@@ -29,13 +29,15 @@ export function StatCard({
 
   return (
     <div className={cn(
-      "relative flex flex-col justify-between rounded-xl p-6 shadow-sm ring-1 ring-black/5",
-      isDark ? "bg-brand-primary text-white" : "bg-white text-brand-primary"
+      "relative flex flex-col justify-between rounded-xl p-6 shadow-sm ring-1 ring-ui-border transition-all duration-300",
+      isDark 
+        ? "bg-[var(--color-card-accent-bg)] text-[var(--color-card-accent-fg)]" 
+        : "bg-ui-surface text-brand-primary"
     )}>
       <div className="flex flex-col gap-1">
         <span className={cn(
           "text-xs font-bold uppercase tracking-wider",
-          isDark ? "text-slate-400" : "text-slate-500"
+          isDark ? "text-slate-300" : "text-ui-muted"
         )}>{title}</span>
         <h3 className="text-3xl font-bold">{amount}</h3>
       </div>
@@ -50,7 +52,7 @@ export function StatCard({
         </div>
         <span className={cn(
           "text-xs font-medium",
-          isDark ? "text-slate-400" : "text-slate-500"
+          isDark ? "text-slate-300" : "text-ui-muted"
         )}>from last month</span>
       </div>
 

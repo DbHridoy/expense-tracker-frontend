@@ -10,7 +10,9 @@ import {
   ChevronRight,
   MoreVertical,
   CheckCircle2,
-  Clock
+  Clock,
+  Calendar,
+  ChevronDown
 } from "lucide-react";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
@@ -77,64 +79,74 @@ const transactions = [
   },
 ];
 
+import { useState } from "react";
+import { AddTransactionModal } from "@/app/components/ui/AddTransactionModal";
+
 export default function TransactionsPage() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <div className="flex flex-1 flex-col">
       <Header title="Transactions Management" />
       
       <div className="flex-1 space-y-8 p-8">
-        {/* Page Actions */}
+        {/* Subheader */}
         <div className="flex items-center justify-between">
-          <div>
-            <h3 className="text-lg font-bold text-brand-primary">Review and manage institutional cash flows</h3>
-            <p className="text-sm text-slate-500">Showing 1-10 of 258 transactions</p>
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-ui-border bg-ui-surface shadow-sm cursor-pointer hover:bg-ui-surface-muted transition-colors group">
+              <Calendar size={14} className="text-ui-muted group-hover:text-brand-primary transition-colors" />
+              <select className="bg-transparent text-xs font-bold text-brand-primary outline-none cursor-pointer appearance-none pr-6 relative">
+                <option>Select Day</option>
+                {[...Array(31)].map((_, i) => <option key={i+1}>{i+1}</option>)}
+              </select>
+              <ChevronDown size={12} className="text-ui-muted -ml-5 pointer-events-none" />
+            </div>
+
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-ui-border bg-ui-surface shadow-sm cursor-pointer hover:bg-ui-surface-muted transition-colors group">
+              <select className="bg-transparent text-xs font-bold text-brand-primary outline-none cursor-pointer appearance-none pr-6">
+                <option>June</option>
+                {["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"].map(m => <option key={m}>{m}</option>)}
+              </select>
+              <ChevronDown size={12} className="text-ui-muted -ml-5 pointer-events-none" />
+            </div>
+
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-ui-border bg-ui-surface shadow-sm cursor-pointer hover:bg-ui-surface-muted transition-colors group">
+              <select className="bg-transparent text-xs font-bold text-brand-primary outline-none cursor-pointer appearance-none pr-6">
+                <option>2024</option>
+                {[2024, 2023, 2022].map(y => <option key={y}>{y}</option>)}
+              </select>
+              <ChevronDown size={12} className="text-ui-muted -ml-5 pointer-events-none" />
+            </div>
+
+            <div className="relative ml-2">
+              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-ui-muted" />
+              <input
+                type="text"
+                placeholder="Search transactions..."
+                className="h-9 w-64 rounded-lg bg-ui-surface border border-ui-border pl-10 pr-4 text-xs text-main-fg outline-none ring-accent transition-all focus:ring-2"
+              />
+            </div>
           </div>
           <div className="flex items-center gap-3">
-            <button className="flex items-center gap-2 rounded-lg border bg-white px-4 py-2 text-sm font-bold text-brand-primary transition-colors hover:bg-slate-50">
+             <button className="flex items-center gap-2 rounded-lg border bg-ui-surface px-4 py-2 text-sm font-bold text-brand-primary transition-colors hover:bg-ui-surface-muted">
               <Download size={18} />
-              Export CSV
+              Export
             </button>
-            <button className="flex items-center gap-2 rounded-lg bg-brand-primary px-4 py-2 text-sm font-bold text-white shadow-sm transition-all hover:bg-brand-secondary active:scale-95">
+            <button 
+              onClick={() => setIsModalOpen(true)}
+              className="flex items-center gap-2 rounded-lg bg-brand-primary px-4 py-2 text-sm font-bold text-white shadow-sm transition-all hover:bg-brand-secondary active:scale-95 dark:text-main-bg"
+            >
               <Plus size={18} />
-              Add New Transaction
+              Add Transaction
             </button>
-          </div>
-        </div>
-
-        {/* Filters */}
-        <div className="flex items-center justify-between rounded-xl border bg-white p-4 shadow-sm">
-          <div className="flex items-center gap-6">
-            <div className="flex flex-col gap-1">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Date Range</span>
-              <button className="flex items-center gap-2 text-sm font-bold text-brand-primary">
-                Last 30 Days
-                <ChevronRight size={14} className="rotate-90" />
-              </button>
-            </div>
-            <div className="h-8 w-px bg-slate-200"></div>
-            <div className="flex flex-col gap-1">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Category</span>
-              <button className="flex items-center gap-2 text-sm font-bold text-brand-primary">
-                All Categories
-                <ChevronRight size={14} className="rotate-90" />
-              </button>
-            </div>
-          </div>
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
-            <input
-              type="text"
-              placeholder="Search transactions..."
-              className="h-10 w-64 rounded-lg bg-slate-100 pl-10 pr-4 text-sm outline-none ring-accent transition-all focus:ring-2"
-            />
           </div>
         </div>
 
         {/* Transactions Table */}
-        <div className="overflow-hidden rounded-xl border bg-white shadow-sm">
+        <div className="overflow-hidden rounded-xl border bg-ui-surface shadow-sm">
           <table className="w-full text-left">
             <thead>
-              <tr className="border-b bg-slate-50/50 text-[11px] font-bold uppercase tracking-wider text-slate-400">
+              <tr className="border-b bg-main-bg/50 text-[11px] font-bold uppercase tracking-wider text-ui-muted">
                 <th className="px-6 py-4">Date</th>
                 <th className="px-6 py-4">Description</th>
                 <th className="px-6 py-4 text-center">Category</th>
@@ -145,12 +157,12 @@ export default function TransactionsPage() {
             </thead>
             <tbody className="divide-y text-sm">
               {transactions.map((t) => (
-                <tr key={t.id} className="group hover:bg-slate-50/50">
+                <tr key={t.id} className="group hover:bg-main-bg/50">
                   <td className="whitespace-nowrap px-6 py-4 font-bold text-brand-primary">{t.date}</td>
                   <td className="px-6 py-4">
                     <div className="flex flex-col">
                       <span className="font-bold text-brand-primary">{t.description}</span>
-                      <span className="text-xs text-slate-400">{t.subtext}</span>
+                      <span className="text-xs text-ui-muted">{t.subtext}</span>
                     </div>
                   </td>
                   <td className="px-6 py-4 text-center">
@@ -174,7 +186,7 @@ export default function TransactionsPage() {
                     </div>
                   </td>
                   <td className="px-6 py-4 text-right">
-                    <button className="text-slate-400 transition-colors hover:text-brand-primary">
+                    <button className="text-ui-muted transition-colors hover:text-brand-primary">
                       <MoreVertical size={18} />
                     </button>
                   </td>
@@ -184,19 +196,23 @@ export default function TransactionsPage() {
           </table>
           
           {/* Pagination */}
-          <div className="flex items-center justify-between border-t bg-slate-50/50 px-6 py-4">
-            <span className="text-xs font-medium text-slate-500">Showing 1 to 5 of 258 transactions</span>
+          <div className="flex items-center justify-between border-t bg-main-bg/50 px-6 py-4">
+            <span className="text-xs font-medium text-ui-muted">Showing 1 to 5 of 258 transactions</span>
             <div className="flex items-center gap-2">
-              <button className="flex h-8 w-8 items-center justify-center rounded-lg border bg-white text-slate-400 transition-colors hover:bg-slate-50 disabled:opacity-50" disabled>
+              <button className="flex h-8 w-8 items-center justify-center rounded-lg border bg-ui-surface text-ui-muted transition-colors hover:bg-main-bg disabled:opacity-50" disabled>
                 <ChevronLeft size={16} />
               </button>
-              <button className="flex h-8 w-8 items-center justify-center rounded-lg border bg-white text-brand-primary transition-colors hover:bg-slate-50">
+              <button className="flex h-8 w-8 items-center justify-center rounded-lg border bg-ui-surface text-brand-primary transition-colors hover:bg-main-bg">
                 <ChevronRight size={16} />
               </button>
             </div>
           </div>
         </div>
       </div>
+      <AddTransactionModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+      />
     </div>
   );
 }
