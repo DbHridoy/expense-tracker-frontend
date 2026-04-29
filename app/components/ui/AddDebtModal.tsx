@@ -34,7 +34,7 @@ export function AddDebtModal({ isOpen, onClose }: AddDebtModalProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 z-[100] bg-brand-primary/40 backdrop-blur-sm dark:bg-black/60"
+            className="fixed inset-0 z-[100] bg-brand-primary/40 backdrop-blur-sm"
           />
 
           {/* Modal */}
@@ -46,7 +46,7 @@ export function AddDebtModal({ isOpen, onClose }: AddDebtModalProps) {
               className="w-full max-w-lg overflow-hidden rounded-2xl bg-ui-surface shadow-2xl pointer-events-auto ring-1 ring-ui-border"
             >
               {/* Header */}
-              <div className="flex items-center justify-between border-b px-6 py-4">
+              <div className="flex items-center justify-between border-b border-ui-border px-6 py-4">
                 <h2 className="text-xl font-bold text-brand-primary">Record New Debt</h2>
                 <button
                   onClick={onClose}
@@ -70,7 +70,7 @@ export function AddDebtModal({ isOpen, onClose }: AddDebtModalProps) {
                       className={`flex flex-col items-center justify-center gap-2 rounded-xl border-2 py-4 transition-all focus:ring-2 ${
                         type === "Borrowed" 
                           ? "border-danger/40 bg-danger/5 text-danger ring-danger/20" 
-                          : "border-slate-100 text-ui-muted hover:border-danger/20 hover:text-danger hover:bg-danger/5"
+                          : "border-ui-surface-muted text-ui-muted hover:border-danger/20 hover:text-danger hover:bg-danger/5"
                       }`}
                     >
                       <ArrowUpRight size={20} />
@@ -82,7 +82,7 @@ export function AddDebtModal({ isOpen, onClose }: AddDebtModalProps) {
                       className={`flex flex-col items-center justify-center gap-2 rounded-xl border-2 py-4 transition-all focus:ring-2 ${
                         type === "Lent" 
                           ? "border-success/40 bg-success/5 text-success ring-success/20" 
-                          : "border-slate-100 text-ui-muted hover:border-success/20 hover:text-success hover:bg-success/5"
+                          : "border-ui-surface-muted text-ui-muted hover:border-success/20 hover:text-success hover:bg-success/5"
                       }`}
                     >
                       <ArrowDownRight size={20} />
@@ -152,7 +152,7 @@ export function AddDebtModal({ isOpen, onClose }: AddDebtModalProps) {
 
                 {/* Actions */}
                 <div className="flex flex-col gap-3 pt-2">
-                  <button className="w-full rounded-xl bg-brand-primary py-4 text-sm font-bold text-white shadow-lg shadow-brand-primary/20 transition-all hover:bg-brand-secondary active:scale-95 uppercase tracking-widest">
+                  <button className="w-full rounded-xl bg-btn-primary-bg py-4 text-sm font-bold text-btn-primary-fg shadow-lg shadow-brand-primary/20 transition-all hover:bg-btn-primary-hover active:scale-95 uppercase tracking-widest">
                     Save Debt Record
                   </button>
                   <p className="text-[10px] text-center text-ui-muted font-bold uppercase tracking-widest">

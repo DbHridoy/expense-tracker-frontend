@@ -8,10 +8,8 @@ import {
   Wallet, 
   HandCoins, 
   LogOut,
-  ChevronRight,
-  SunMoon
+  ChevronRight
 } from "lucide-react";
-import { ThemeToggle } from "@/app/components/theme/ThemeToggle";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -65,13 +63,6 @@ export function Sidebar() {
       </nav>
 
       <div className="mt-auto flex flex-col gap-2 border-t pt-6">
-        <div className="flex items-center justify-between px-3 py-2 text-sidebar-fg">
-          <div className="flex items-center gap-3">
-            <SunMoon size={20} />
-            <span className="text-sm font-medium">Theme Mode</span>
-          </div>
-          <ThemeToggle />
-        </div>
         {bottomItems.map((item) => (
           <Link
             key={item.name}

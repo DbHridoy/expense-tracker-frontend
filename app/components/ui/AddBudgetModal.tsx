@@ -1,15 +1,15 @@
 "use client";
 
-import { X, Calendar, ChevronDown, DollarSign } from "lucide-react";
+import { X, Calendar, ChevronDown, DollarSign, Wallet } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 
-interface AddTransactionModalProps {
+interface AddBudgetModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-export function AddTransactionModal({ isOpen, onClose }: AddTransactionModalProps) {
+export function AddBudgetModal({ isOpen, onClose }: AddBudgetModalProps) {
   // Prevent scrolling when modal is open
   useEffect(() => {
     if (isOpen) {
@@ -45,7 +45,12 @@ export function AddTransactionModal({ isOpen, onClose }: AddTransactionModalProp
             >
               {/* Header */}
               <div className="flex items-center justify-between border-b border-ui-border px-6 py-4">
-                <h2 className="text-xl font-bold text-brand-primary">Add New Transaction</h2>
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-success/10 text-success">
+                    <Wallet size={20} />
+                  </div>
+                  <h2 className="text-xl font-bold text-brand-primary">Create New Budget</h2>
+                </div>
                 <button
                   onClick={onClose}
                   className="rounded-lg p-1 text-ui-muted transition-colors hover:bg-ui-surface-muted hover:text-brand-primary"
@@ -59,7 +64,7 @@ export function AddTransactionModal({ isOpen, onClose }: AddTransactionModalProp
                 {/* Amount */}
                 <div className="space-y-2">
                   <label className="text-[11px] font-bold uppercase tracking-wider text-ui-muted ml-1">
-                    Transaction Amount
+                    Budget Amount
                   </label>
                   <div className="relative">
                     <div className="absolute left-4 top-1/2 -translate-y-1/2 text-ui-muted">
@@ -74,53 +79,55 @@ export function AddTransactionModal({ isOpen, onClose }: AddTransactionModalProp
                   </div>
                 </div>
 
-                {/* Type & Category */}
+                {/* Category & Period */}
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <label className="text-[11px] font-bold uppercase tracking-wider text-ui-muted ml-1">
-                      Type
-                    </label>
-                    <div className="relative">
-                      <select className="h-12 w-full appearance-none rounded-xl bg-ui-surface-muted pl-4 pr-10 text-sm font-bold text-brand-primary outline-none ring-1 ring-ui-border transition-all focus:ring-2 focus:ring-accent">
-                        <option>Expense</option>
-                        <option>Income</option>
-                        <option>Transfer</option>
-                      </select>
-                      <ChevronDown size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-ui-muted pointer-events-none" />
-                    </div>
-                  </div>
                   <div className="space-y-2">
                     <label className="text-[11px] font-bold uppercase tracking-wider text-ui-muted ml-1">
                       Category
                     </label>
                     <div className="relative">
                       <select className="h-12 w-full appearance-none rounded-xl bg-ui-surface-muted pl-4 pr-10 text-sm font-bold text-brand-primary outline-none ring-1 ring-ui-border transition-all focus:ring-2 focus:ring-accent">
-                        <option>Operational</option>
+                        <option>Housing</option>
                         <option>Marketing</option>
-                        <option>Infrastructure</option>
-                        <option>Services</option>
-                        <option>Internal</option>
+                        <option>Operations</option>
+                        <option>Technology</option>
+                        <option>Personnel</option>
+                        <option>Travel</option>
+                        <option>Misc</option>
+                      </select>
+                      <ChevronDown size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-ui-muted pointer-events-none" />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[11px] font-bold uppercase tracking-wider text-ui-muted ml-1">
+                      Period
+                    </label>
+                    <div className="relative">
+                      <select className="h-12 w-full appearance-none rounded-xl bg-ui-surface-muted pl-4 pr-10 text-sm font-bold text-brand-primary outline-none ring-1 ring-ui-border transition-all focus:ring-2 focus:ring-accent">
+                        <option>Monthly</option>
+                        <option>Quarterly</option>
+                        <option>Yearly</option>
                       </select>
                       <ChevronDown size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-ui-muted pointer-events-none" />
                     </div>
                   </div>
                 </div>
 
-                {/* Description */}
+                {/* Details */}
                 <div className="space-y-2">
                   <label className="text-[11px] font-bold uppercase tracking-wider text-ui-muted ml-1">
-                    Description / Note
+                    Budget Details / Rationale
                   </label>
                   <textarea
-                    placeholder="Add details about this entry..."
+                    placeholder="Enter details about this budget allocation..."
                     className="min-h-[100px] w-full resize-none rounded-xl bg-ui-surface-muted p-4 text-sm font-medium text-brand-primary outline-none ring-1 ring-ui-border transition-all focus:ring-2 focus:ring-accent"
                   />
                 </div>
 
-                {/* Date */}
+                {/* Start Date */}
                 <div className="space-y-2">
                   <label className="text-[11px] font-bold uppercase tracking-wider text-ui-muted ml-1">
-                    Date
+                    Effective From
                   </label>
                   <div className="relative">
                     <input
@@ -144,7 +151,7 @@ export function AddTransactionModal({ isOpen, onClose }: AddTransactionModalProp
                     type="submit"
                     className="rounded-xl bg-btn-primary-bg px-8 py-3 text-sm font-bold text-btn-primary-fg shadow-lg shadow-brand-primary/20 transition-all hover:bg-btn-primary-hover active:scale-95"
                   >
-                    Record Transaction
+                    Create Budget
                   </button>
                 </div>
               </form>

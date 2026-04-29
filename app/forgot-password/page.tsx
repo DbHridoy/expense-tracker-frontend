@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Mail, ArrowRight, Shield, ChevronLeft } from "lucide-react";
+import { Mail, Shield, ArrowLeft, ArrowRight } from "lucide-react";
 import { ThemeToggle } from "@/app/components/theme/ThemeToggle";
 
 export default function ForgotPasswordPage() {
@@ -12,11 +12,11 @@ export default function ForgotPasswordPage() {
         <div className="text-center space-y-2">
           <div className="flex justify-center mb-6">
             <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-primary shadow-lg shadow-brand-primary/20">
-              <Shield size={24} className="text-white" />
+              <Shield size={24} className="text-btn-primary-fg" />
             </div>
           </div>
-          <h2 className="text-3xl font-bold tracking-tight text-brand-primary">Forgot Password</h2>
-          <p className="text-ui-muted">Enter your email to receive an OTP code.</p>
+          <h2 className="text-3xl font-bold tracking-tight text-brand-primary">Recover Access</h2>
+          <p className="text-ui-muted">Enter your email to receive recovery instructions.</p>
         </div>
 
         <form className="space-y-6">
@@ -27,24 +27,24 @@ export default function ForgotPasswordPage() {
               <input 
                 type="email" 
                 placeholder="name@company.com" 
-                className="w-full h-14 rounded-xl bg-main-bg border-none ring-1 ring-ui-border pl-12 pr-4 text-sm focus:ring-2 focus:ring-brand-primary outline-none transition-all"
+                className="w-full h-14 rounded-xl bg-ui-surface-muted ring-1 ring-ui-border text-main-fg px-12 text-sm focus:ring-2 focus:ring-brand-primary outline-none transition-all"
               />
             </div>
           </div>
 
           <Link 
             href="/verify-otp"
-            className="flex w-full h-14 items-center justify-center gap-2 rounded-xl bg-brand-primary text-white font-bold transition-all hover:bg-brand-secondary active:scale-95 group"
+            className="flex w-full h-14 items-center justify-center gap-2 rounded-xl bg-btn-primary-bg text-btn-primary-fg font-bold shadow-lg shadow-brand-primary/10 transition-all hover:bg-btn-primary-hover active:scale-95 group"
           >
-            Send OTP Code
+            Send Recovery Email
             <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
           </Link>
         </form>
 
-        <div className="text-center">
-          <Link href="/login" className="inline-flex items-center gap-2 text-sm font-bold text-ui-muted hover:text-brand-primary transition-colors">
-            <ChevronLeft size={16} />
-            Back to Login
+        <div className="pt-4">
+          <Link href="/login" className="flex items-center justify-center gap-2 text-sm font-bold text-ui-muted hover:text-brand-primary transition-colors">
+            <ArrowLeft size={16} />
+            Back to Sign In
           </Link>
         </div>
       </div>
