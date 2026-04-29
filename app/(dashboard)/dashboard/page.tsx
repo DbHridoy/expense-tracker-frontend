@@ -21,6 +21,8 @@ function cn(...inputs: ClassValue[]) {
 
 import { useState } from "react";
 import { AddTransactionModal } from "@/app/components/ui/AddTransactionModal";
+import { AddDebtModal } from "@/app/components/ui/AddDebtModal";
+import { AddBudgetModal } from "@/app/components/ui/AddBudgetModal";
 import { MultiActionFAB } from "@/app/components/ui/MultiActionFAB";
 
 import { SpendingCompositionChart } from "@/app/components/ui/SpendingCompositionChart";
@@ -35,6 +37,8 @@ const compositionData = [
 
 export default function DashboardPage() {
   const [isTransactionModalOpen, setIsTransactionModalOpen] = useState(false);
+  const [isDebtModalOpen, setIsDebtModalOpen] = useState(false);
+  const [isBudgetModalOpen, setIsBudgetModalOpen] = useState(false);
 
   return (
     <div className="flex flex-1 flex-col">
@@ -120,13 +124,23 @@ export default function DashboardPage() {
 
       <MultiActionFAB 
         onAddTransaction={() => setIsTransactionModalOpen(true)}
-        onAddBudget={() => alert("Add Budget Modal Coming Soon")}
-        onAddDebt={() => alert("Add Debt Modal Coming Soon")}
+        onAddBudget={() => setIsBudgetModalOpen(true)}
+        onAddDebt={() => setIsDebtModalOpen(true)}
       />
 
       <AddTransactionModal 
         isOpen={isTransactionModalOpen} 
         onClose={() => setIsTransactionModalOpen(false)} 
+      />
+
+      <AddDebtModal 
+        isOpen={isDebtModalOpen} 
+        onClose={() => setIsDebtModalOpen(false)} 
+      />
+
+      <AddBudgetModal 
+        isOpen={isBudgetModalOpen} 
+        onClose={() => setIsBudgetModalOpen(false)} 
       />
     </div>
   );

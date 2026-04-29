@@ -37,7 +37,7 @@ export function StatCard({
       <div className="flex flex-col gap-1">
         <span className={cn(
           "text-xs font-bold uppercase tracking-wider",
-          isDark ? "text-slate-300" : "text-ui-muted"
+          isDark ? "opacity-70" : "text-ui-muted"
         )}>{title}</span>
         <h3 className="text-3xl font-bold">{amount}</h3>
       </div>
@@ -52,7 +52,7 @@ export function StatCard({
         </div>
         <span className={cn(
           "text-xs font-medium",
-          isDark ? "text-slate-300" : "text-ui-muted"
+          isDark ? "opacity-70" : "text-ui-muted"
         )}>from last month</span>
       </div>
 
