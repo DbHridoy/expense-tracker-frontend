@@ -32,7 +32,7 @@ export function AddTransactionModal({ isOpen, onClose }: AddTransactionModalProp
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 z-[100] bg-brand-primary/40 backdrop-blur-sm dark:bg-black/60"
+            className="fixed inset-0 z-[100] bg-brand-primary/40 backdrop-blur-sm"
           />
 
           {/* Modal */}
@@ -44,7 +44,7 @@ export function AddTransactionModal({ isOpen, onClose }: AddTransactionModalProp
               className="w-full max-w-lg overflow-hidden rounded-2xl bg-ui-surface shadow-2xl pointer-events-auto ring-1 ring-ui-border"
             >
               {/* Header */}
-              <div className="flex items-center justify-between border-b px-6 py-4">
+              <div className="flex items-center justify-between border-b border-ui-border px-6 py-4">
                 <h2 className="text-xl font-bold text-brand-primary">Add New Transaction</h2>
                 <button
                   onClick={onClose}
@@ -142,7 +142,7 @@ export function AddTransactionModal({ isOpen, onClose }: AddTransactionModalProp
                   </button>
                   <button
                     type="submit"
-                    className="rounded-xl bg-brand-primary px-8 py-3 text-sm font-bold text-white shadow-lg shadow-brand-primary/20 transition-all hover:bg-brand-secondary active:scale-95 dark:text-main-bg"
+                    className="rounded-xl bg-btn-primary-bg px-8 py-3 text-sm font-bold text-btn-primary-fg shadow-lg shadow-brand-primary/20 transition-all hover:bg-btn-primary-hover active:scale-95"
                   >
                     Record Transaction
                   </button>

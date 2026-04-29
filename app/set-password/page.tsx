@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Lock, Shield, ArrowRight, Eye } from "lucide-react";
+import { Lock, Shield, ArrowRight, CheckCircle2 } from "lucide-react";
 import { ThemeToggle } from "@/app/components/theme/ThemeToggle";
 
 export default function SetPasswordPage() {
@@ -12,11 +12,11 @@ export default function SetPasswordPage() {
         <div className="text-center space-y-2">
           <div className="flex justify-center mb-6">
             <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-primary shadow-lg shadow-brand-primary/20">
-              <Shield size={24} className="text-white" />
+              <Shield size={24} className="text-btn-primary-fg" />
             </div>
           </div>
-          <h2 className="text-3xl font-bold tracking-tight text-brand-primary">Set New Password</h2>
-          <p className="text-ui-muted">Create a secure password for your account.</p>
+          <h2 className="text-3xl font-bold tracking-tight text-brand-primary">Secure Account</h2>
+          <p className="text-ui-muted">Set a strong password for your institutional access.</p>
         </div>
 
         <form className="space-y-6">
@@ -27,11 +27,8 @@ export default function SetPasswordPage() {
               <input 
                 type="password" 
                 placeholder="••••••••" 
-                className="w-full h-14 rounded-xl bg-main-bg border-none ring-1 ring-ui-border pl-12 pr-12 text-sm focus:ring-2 focus:ring-brand-primary outline-none transition-all"
+                className="w-full h-14 rounded-xl bg-ui-surface-muted ring-1 ring-ui-border text-main-fg px-12 text-sm focus:ring-2 focus:ring-brand-primary outline-none transition-all"
               />
-              <button type="button" className="absolute right-4 top-1/2 -translate-y-1/2 text-ui-muted hover:text-brand-primary">
-                <Eye size={18} />
-              </button>
             </div>
           </div>
 
@@ -42,17 +39,25 @@ export default function SetPasswordPage() {
               <input 
                 type="password" 
                 placeholder="••••••••" 
-                className="w-full h-14 rounded-xl bg-main-bg border-none ring-1 ring-ui-border pl-12 pr-12 text-sm focus:ring-2 focus:ring-brand-primary outline-none transition-all"
+                className="w-full h-14 rounded-xl bg-ui-surface-muted ring-1 ring-ui-border text-main-fg px-12 text-sm focus:ring-2 focus:ring-brand-primary outline-none transition-all"
               />
-              <button type="button" className="absolute right-4 top-1/2 -translate-y-1/2 text-ui-muted hover:text-brand-primary">
-                <Eye size={18} />
-              </button>
             </div>
+          </div>
+
+          <div className="space-y-3">
+             <div className="flex items-center gap-2 text-[10px] font-bold text-success uppercase tracking-wider ml-1">
+                <CheckCircle2 size={12} />
+                Min. 12 characters required
+             </div>
+             <div className="flex items-center gap-2 text-[10px] font-bold text-ui-muted uppercase tracking-wider ml-1">
+                <CheckCircle2 size={12} />
+                Must include special characters
+             </div>
           </div>
 
           <Link 
             href="/login"
-            className="flex w-full h-14 items-center justify-center gap-2 rounded-xl bg-brand-primary text-white font-bold transition-all hover:bg-brand-secondary active:scale-95 group"
+            className="flex w-full h-14 items-center justify-center gap-2 rounded-xl bg-btn-primary-bg text-btn-primary-fg font-bold shadow-lg shadow-brand-primary/10 transition-all hover:bg-btn-primary-hover active:scale-95 group"
           >
             Update Password
             <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
