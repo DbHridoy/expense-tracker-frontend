@@ -60,7 +60,7 @@ export function MultiActionFAB({
       id: "debt", 
       name: "Record Debt", 
       icon: HandCoins, 
-      color: "bg-brand-primary",
+      color: "bg-btn-primary-bg",
       onClick: () => {
         onAddDebt();
         setIsOpen(false);
@@ -90,7 +90,7 @@ export function MultiActionFAB({
                   className={cn(
                     "flex h-12 w-12 items-center justify-center rounded-2xl text-white shadow-xl transition-transform hover:scale-110 active:scale-95",
                     action.color,
-                    action.id === "debt" && "dark:text-main-bg"
+                    action.id === "debt" && "text-btn-primary-fg"
                   )}
                 >
                   <action.icon size={20} />
@@ -107,7 +107,7 @@ export function MultiActionFAB({
           "flex h-16 w-16 items-center justify-center rounded-[2rem] shadow-2xl transition-all duration-300 active:scale-95",
           isOpen 
             ? "bg-ui-surface text-brand-primary ring-2 ring-ui-border" 
-            : "bg-brand-primary text-white dark:text-main-bg"
+            : "bg-btn-primary-bg text-btn-primary-fg"
         )}
       >
         <motion.div

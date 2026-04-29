@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Mail, Lock, Eye, Terminal, Globe, Shield, ArrowRight } from "lucide-react";
+import { Mail, Lock, Eye, Globe, Shield, ArrowRight } from "lucide-react";
 import { ThemeToggle } from "@/app/components/theme/ThemeToggle";
 
 export default function LoginPage() {
@@ -12,7 +12,7 @@ export default function LoginPage() {
         <div className="text-center space-y-2">
           <div className="flex justify-center mb-6">
             <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-primary shadow-lg shadow-brand-primary/20">
-              <Shield size={24} className="text-white" />
+              <Shield size={24} className="text-btn-primary-fg" />
             </div>
           </div>
           <h2 className="text-3xl font-bold tracking-tight text-brand-primary">Welcome Back</h2>
@@ -57,7 +57,7 @@ export default function LoginPage() {
 
           <Link 
             href="/dashboard"
-            className="flex w-full h-14 items-center justify-center gap-2 rounded-xl bg-brand-primary text-white font-bold transition-all hover:bg-brand-secondary active:scale-95 group dark:text-main-bg"
+            className="flex w-full h-14 items-center justify-center gap-2 rounded-xl bg-btn-primary-bg text-btn-primary-fg font-bold shadow-lg shadow-brand-primary/10 transition-all hover:bg-btn-primary-hover active:scale-95 group"
           >
             Continue to Dashboard
             <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
@@ -74,7 +74,7 @@ export default function LoginPage() {
         </div>
 
         <div className="grid grid-cols-1 gap-4">
-          <button className="flex h-12 items-center justify-center gap-3 rounded-xl border bg-ui-surface px-4 text-sm font-bold text-brand-primary transition-all hover:bg-ui-surface-muted">
+          <button className="flex h-12 items-center justify-center gap-3 rounded-xl border border-ui-border bg-ui-surface px-4 text-sm font-bold text-brand-primary transition-all hover:bg-ui-surface-muted">
             <Globe size={18} />
             Continue with Google
           </button>

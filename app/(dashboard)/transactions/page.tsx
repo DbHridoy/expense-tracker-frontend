@@ -5,7 +5,6 @@ import {
   Plus, 
   Download, 
   Search, 
-  Filter,
   ChevronLeft,
   ChevronRight,
   MoreVertical,
@@ -31,7 +30,7 @@ const transactions = [
     amount: "-$8,200.00", 
     status: "Pending",
     icon: Clock,
-    statusColor: "text-amber-500 bg-amber-50"
+    statusColor: "text-amber-500 bg-amber-500/10"
   },
   { 
     id: 2, 
@@ -96,24 +95,28 @@ export default function TransactionsPage() {
             <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-ui-border bg-ui-surface shadow-sm cursor-pointer hover:bg-ui-surface-muted transition-colors group">
               <Calendar size={14} className="text-ui-muted group-hover:text-brand-primary transition-colors" />
               <select className="bg-transparent text-xs font-bold text-brand-primary outline-none cursor-pointer appearance-none pr-6 relative">
-                <option>Select Day</option>
-                {[...Array(31)].map((_, i) => <option key={i+1}>{i+1}</option>)}
+                <option value="" className="bg-ui-surface text-main-fg">Day</option>
+                {Array.from({ length: 31 }, (_, i) => (
+                  <option key={i + 1} value={i + 1} className="bg-ui-surface text-main-fg">{i + 1}</option>
+                ))}
               </select>
               <ChevronDown size={12} className="text-ui-muted -ml-5 pointer-events-none" />
             </div>
 
             <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-ui-border bg-ui-surface shadow-sm cursor-pointer hover:bg-ui-surface-muted transition-colors group">
-              <select className="bg-transparent text-xs font-bold text-brand-primary outline-none cursor-pointer appearance-none pr-6">
-                <option>June</option>
-                {["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"].map(m => <option key={m}>{m}</option>)}
+              <select className="bg-transparent text-xs font-bold text-brand-primary outline-none cursor-pointer appearance-none pr-6" defaultValue="June">
+                {["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"].map(m => (
+                  <option key={m} value={m} className="bg-ui-surface text-main-fg">{m}</option>
+                ))}
               </select>
               <ChevronDown size={12} className="text-ui-muted -ml-5 pointer-events-none" />
             </div>
 
             <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-ui-border bg-ui-surface shadow-sm cursor-pointer hover:bg-ui-surface-muted transition-colors group">
-              <select className="bg-transparent text-xs font-bold text-brand-primary outline-none cursor-pointer appearance-none pr-6">
-                <option>2024</option>
-                {[2024, 2023, 2022].map(y => <option key={y}>{y}</option>)}
+              <select className="bg-transparent text-xs font-bold text-brand-primary outline-none cursor-pointer appearance-none pr-6" defaultValue="2024">
+                {[2024, 2023, 2022].map(y => (
+                  <option key={y} value={y} className="bg-ui-surface text-main-fg">{y}</option>
+                ))}
               </select>
               <ChevronDown size={12} className="text-ui-muted -ml-5 pointer-events-none" />
             </div>
@@ -128,13 +131,13 @@ export default function TransactionsPage() {
             </div>
           </div>
           <div className="flex items-center gap-3">
-             <button className="flex items-center gap-2 rounded-lg border bg-ui-surface px-4 py-2 text-sm font-bold text-brand-primary transition-colors hover:bg-ui-surface-muted">
+             <button className="flex items-center gap-2 rounded-lg border border-ui-border bg-ui-surface px-4 py-2 text-sm font-bold text-brand-primary transition-colors hover:bg-ui-surface-muted">
               <Download size={18} />
               Export
             </button>
             <button 
               onClick={() => setIsModalOpen(true)}
-              className="flex items-center gap-2 rounded-lg bg-brand-primary px-4 py-2 text-sm font-bold text-white shadow-sm transition-all hover:bg-brand-secondary active:scale-95 dark:text-main-bg"
+              className="flex items-center gap-2 rounded-lg bg-btn-primary-bg px-4 py-2 text-sm font-bold text-btn-primary-fg shadow-sm transition-all hover:bg-btn-primary-hover active:scale-95"
             >
               <Plus size={18} />
               Add Transaction
@@ -143,10 +146,10 @@ export default function TransactionsPage() {
         </div>
 
         {/* Transactions Table */}
-        <div className="overflow-hidden rounded-xl border bg-ui-surface shadow-sm">
+        <div className="overflow-hidden rounded-xl border border-ui-border bg-ui-surface shadow-sm">
           <table className="w-full text-left">
             <thead>
-              <tr className="border-b bg-main-bg/50 text-[11px] font-bold uppercase tracking-wider text-ui-muted">
+              <tr className="border-b border-ui-border bg-main-bg/50 text-[11px] font-bold uppercase tracking-wider text-ui-muted">
                 <th className="px-6 py-4">Date</th>
                 <th className="px-6 py-4">Description</th>
                 <th className="px-6 py-4 text-center">Category</th>
@@ -155,9 +158,9 @@ export default function TransactionsPage() {
                 <th className="px-6 py-4"></th>
               </tr>
             </thead>
-            <tbody className="divide-y text-sm">
+            <tbody className="divide-y divide-ui-border text-sm">
               {transactions.map((t) => (
-                <tr key={t.id} className="group hover:bg-main-bg/50">
+                <tr key={t.id} className="group hover:bg-ui-surface-muted/50 transition-colors">
                   <td className="whitespace-nowrap px-6 py-4 font-bold text-brand-primary">{t.date}</td>
                   <td className="px-6 py-4">
                     <div className="flex flex-col">
@@ -166,7 +169,7 @@ export default function TransactionsPage() {
                     </div>
                   </td>
                   <td className="px-6 py-4 text-center">
-                    <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-600">
+                    <span className="rounded-full bg-ui-surface-muted px-3 py-1 text-xs font-bold text-ui-muted border border-ui-border">
                       {t.category}
                     </span>
                   </td>
@@ -196,13 +199,13 @@ export default function TransactionsPage() {
           </table>
           
           {/* Pagination */}
-          <div className="flex items-center justify-between border-t bg-main-bg/50 px-6 py-4">
+          <div className="flex items-center justify-between border-t border-ui-border bg-main-bg/50 px-6 py-4">
             <span className="text-xs font-medium text-ui-muted">Showing 1 to 5 of 258 transactions</span>
             <div className="flex items-center gap-2">
-              <button className="flex h-8 w-8 items-center justify-center rounded-lg border bg-ui-surface text-ui-muted transition-colors hover:bg-main-bg disabled:opacity-50" disabled>
+              <button className="flex h-8 w-8 items-center justify-center rounded-lg border border-ui-border bg-ui-surface text-ui-muted transition-colors hover:bg-ui-surface-muted disabled:opacity-50" disabled>
                 <ChevronLeft size={16} />
               </button>
-              <button className="flex h-8 w-8 items-center justify-center rounded-lg border bg-ui-surface text-brand-primary transition-colors hover:bg-main-bg">
+              <button className="flex h-8 w-8 items-center justify-center rounded-lg border border-ui-border bg-ui-surface text-brand-primary transition-colors hover:bg-ui-surface-muted">
                 <ChevronRight size={16} />
               </button>
             </div>
